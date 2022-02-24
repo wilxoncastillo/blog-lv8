@@ -1,0 +1,5 @@
+laravel new blog-lv8 --jet
+
+npm install && npm run dev
+
+                                                                                      
