@@ -19,3 +19,15 @@ Esto les solucionará el problema, y podrán seguir con el curso de manera norma
 
 -----------------
 npm install npm-watch
+
+Plantilla AdminLte
+https://www.youtube.com/watch?v=r8RKayPtijc&list=PLZ2ovOgdI-kWWS9aq8mfUDkJRfYib-SvF&index=51
+
+https://github.com/jeroennoten/Laravel-AdminLTE
+
+composer require jeroennoten/laravel-adminlte
+
+php artisan adminlte:install
+
+https://www.youtube.com/watch?v=nANAMiWwyU8&list=PLZ2ovOgdI-kWWS9aq8mfUDkJRfYib-SvF&index=56
+
