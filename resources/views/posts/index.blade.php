@@ -27,6 +27,7 @@
         </div>
     </div>
 
+    {{-- 
     <h1 class="bg-black">slate</h1>
     <h1 class="bg-white">slate</h1>
     <h1 class="bg-slate-500">slate</h1>
@@ -50,6 +51,7 @@
     <h1 class="bg-purple-500">slate</h1>
     <h1 class="bg-fuchsia-500">slate</h1>
     <h1 class="bg-pink-500">slate</h1>
-    <h1 class="bg-rose-500">slate</h1>
+    <h1 class="bg-rose-500">slate</h1> 
+    --}}
     
 </x-app-layout>
