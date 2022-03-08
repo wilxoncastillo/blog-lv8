@@ -48,3 +48,5 @@ queue:clear
 route:clear
 view:clear
  
+-----------------------
+https://ckeditor.com/ckeditor-5/
