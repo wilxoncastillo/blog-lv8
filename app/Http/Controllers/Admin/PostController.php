@@ -35,7 +35,7 @@ class PostController extends Controller
         $categories = Category::pluck('name', 'id');
 
         $tags = Tag::all();
-        
+
         return view('admin.posts.create', compact('categories', 'tags'));
     }
 
@@ -92,7 +92,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', compact('post'));//
+        $categories = Category::pluck('name', 'id');
+
+        $tags = Tag::all();
+        
+        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -102,9 +106,43 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
-        //
+        $post->update([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'category_id' => $request->category_id,
+            'status' => $request->status,
+            'extract' => $request->extract,
+            'body' => $request->body,
+        ]);
+
+        if($request->tags) {
+            $post->tags()->sync($request->tags);
+        }
+
+        if($request->file('file')) {
+            $url = Storage::put('public/posts', $request->file('file'));
+
+            if($post->image) {
+                Storage::delete($post->image->url);
+
+                $post->image()->update([
+                    'url' => $url
+                ]);
+            }else {
+                $post->image()->create([
+                    'url' => $url
+                ]);
+            }
+        }
+
+        $categories = Category::pluck('name', 'id');
+
+        $tags = Tag::all();
+
+        return redirect()->route('admin.posts.edit', compact('post', 'categories', 'tags'))
+            ->with('info', 'Post actualizado con exito');
     }
 
     /**

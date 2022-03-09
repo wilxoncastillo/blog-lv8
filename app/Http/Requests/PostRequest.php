@@ -23,11 +23,17 @@ class PostRequest extends FormRequest
      */
     public function rules()
     {
+        $post = $this->route()->parameter('post');
+
         $rules =  [
             'name' => 'required|unique:posts',
             'status' => 'required|in:1,2',
             'file' => 'image'
         ];
+
+        if($post) {
+            $rules['name'] = 'required|unique:posts,name,' . $post->id;
+        }
 
         if($this->status == 2) {
             $rules = array_merge($rules, [

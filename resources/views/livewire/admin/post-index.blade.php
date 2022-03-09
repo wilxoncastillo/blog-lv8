@@ -11,6 +11,7 @@
                     <tr>
                         <td>Id</td>
                         <td>Name</td>
+                        <td>Status</td>
                         <td colspan="2"></td>
                     </tr>
                 </thead>
@@ -20,6 +21,7 @@
                         <tr>
                             <td>{{ $post->id }}</td>
                             <td>{{ $post->name }}</td>
+                            <td>{{ $post->status }}</td>
                             <td width="10px">
                                 <a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-primary btn-sm">Editar</a>
                             </td>

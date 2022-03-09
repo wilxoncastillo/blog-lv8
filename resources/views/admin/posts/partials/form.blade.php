@@ -51,7 +51,11 @@
 <div  class="row mb-3">
     <div class="col">
         <div class="image-wrapper">
-            <img id="preview" src="http://www.losprincipios.org/images/default.jpg" alt="">
+            @isset($post->image)
+                <img id="preview" src="{{ Storage::url($post->image->url) }}" alt="">
+            @else
+                <img id="preview" src="http://www.losprincipios.org/images/default.jpg" alt="">
+            @endisset
         </div>
     </div>
 
@@ -64,7 +68,6 @@
                 <span class="text-danger text-sm">{{ $message }}</span>
             @enderror
         </div>
-
 
         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste, aperiam pariatur. A possimus, ad autem quas iste, sapiente ab, dolorem aut voluptatem facere rerum eligendi molestias quisquam repudiandae maiores similique.</p>
     </div>

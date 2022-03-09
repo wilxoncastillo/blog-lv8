@@ -3,6 +3,12 @@
 @section('title', 'Blod')
 
 @section('content_header')
+    @if(session('info'))
+        <div class="alert alert-success">
+            {{ session('info') }}
+        </div>
+    @endif
+    
     <h1>Crear post</h1>
 @stop
 
