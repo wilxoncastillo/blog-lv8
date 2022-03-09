@@ -58,3 +58,12 @@ php artisan make:request PostRequest
 pixabay.com/es/
 
 php artisan storage:link
+
+php artisan make:observe PostObserve --model=Post
+
+registra con el modelo
+class EventServiceProvider extends ServiceProvider
+
+Post::observe(PostObserve::class);
+
+\App::runningInConsole()

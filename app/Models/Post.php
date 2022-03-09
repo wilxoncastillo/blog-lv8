@@ -50,4 +50,8 @@ class Post extends Model
         return $this->morphOne(Image::class, 'imageable');
     }
 
+    public function getStatusAttribute($value) {
+        return $value == 1 ? 'Borrador' : 'Publicado';
+    }
+
 }
