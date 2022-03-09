@@ -9,6 +9,27 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $guard = [
+        'id',
+        'created_at',
+        'updated_at',
+    ];
+
+    protected $fillable = [
+        'name',
+        'slug',
+        'extract',
+        'body',
+        'status',
+        'user_id',
+        'category_id',
+    ];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     // relacion 1:n inversas
     public function user() {
         return $this->belongsTo(User::class);

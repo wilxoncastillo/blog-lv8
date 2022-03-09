@@ -50,3 +50,6 @@ view:clear
  
 -----------------------
 https://ckeditor.com/ckeditor-5/
+
+--------------------------------
+php artisan make:request PostRequest

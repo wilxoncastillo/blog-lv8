@@ -13,7 +13,7 @@
 
             @include('admin.posts.partials.form')
             
-            {!! Form::submit('Crear tag', ['class' => 'mt-2 btn btn-primary']) !!}
+            {!! Form::submit('Crear post', ['class' => 'mt-2 btn btn-primary']) !!}
         {!! Form::close() !!}
     </div>
 </div>

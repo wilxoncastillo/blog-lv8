@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PostRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
@@ -43,21 +44,23 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        $request->validate([
-            'name' => 'required|unique:tags',
-            'color' => 'required'
+        $post = Post::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'category_id' => $request->category_id,
+            'extract' => $request->extract,
+            'body' => $request->body,
+            'user_id' => auth()->user()->id
         ]);
 
-        $tag = Post::create([
-            'name' => $request->get('name'),
-            'slug' => Str::slug($request->get('name')),
-            'color' => $request->get('color')
-        ]);
+        if($request->tags) {
+            $post->tags()->attach($request->tags);
+        }
 
-        return redirect()->route('admin.tags.edit', compact('tag'))
-            ->with('flag', 'Registro ')->with('info', 'Tag creado con exito');
+        return redirect()->route('admin.posts.edit', compact('post'))
+            ->with('info', 'Post creado con exito');
     }
 
     /**

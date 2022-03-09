@@ -10,6 +10,10 @@
 <div class="form-group">
     {!! Form::label('category_id', 'Categoria:') !!}
     {!! Form::select('category_id', $categories, null, ['class' => 'form-control']) !!}
+
+    @error('category_id')
+        <span class="text-danger text-sm">{{ $message }}</span>
+    @enderror
 </div>
 
 <div class="form-group">
@@ -20,7 +24,12 @@
             {!! Form::checkbox('tags[]', $tag->id,null, ['class' => '']) !!}
             {{ $tag->name }}
         </label>
+
     @endforeach
+    
+    @error('tags')
+        <br><span class="text-danger text-sm">{{ $message }}</span>
+    @enderror
 </div>
 
 <div class='form-group'>
@@ -33,14 +42,26 @@
     <label class="mr-2">
         {!! Form::radio('status', 2, null, ['class' => '']) !!} Publicado
     </label>
+
+    @error('status')
+        <span class="text-danger text-sm">{{ $message }}</span>
+    @enderror
 </div>
 
 <div class="form-group">
-    {!! Form::label('extract', 'Extracto') !!}
+    {!! Form::label('extract', 'Extracto:') !!}
     {!! Form::textarea('extract', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el extracto del post']) !!}
+
+    @error('extract')
+        <span class="text-danger text-sm">{{ $message }}</span>
+    @enderror
 </div>
 
 <div class="form-group">
-    {!! Form::label('body', 'body') !!}
+    {!! Form::label('body', 'Cuerpo del post:') !!}
     {!! Form::textarea('body', null, ['class' => 'form-control', 'placeholder' => 'Ingrese contenido del post']) !!}
+
+    @error('body')
+        <span class="text-danger text-sm">{{ $message }}</span>
+    @enderror
 </div>
