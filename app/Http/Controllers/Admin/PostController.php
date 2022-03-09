@@ -9,6 +9,7 @@ use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -50,6 +51,7 @@ class PostController extends Controller
             'name' => $request->name,
             'slug' => Str::slug($request->name),
             'category_id' => $request->category_id,
+            'status' => $request->status,
             'extract' => $request->extract,
             'body' => $request->body,
             'user_id' => auth()->user()->id
@@ -57,6 +59,14 @@ class PostController extends Controller
 
         if($request->tags) {
             $post->tags()->attach($request->tags);
+        }
+
+        if($request->file('file')) {
+            $url = Storage::put('public/posts', $request->file('file'));
+
+            $post->image()->create([
+                'url' => $url
+            ]);
         }
 
         return redirect()->route('admin.posts.edit', compact('post'))

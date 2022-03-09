@@ -48,6 +48,28 @@
     @enderror
 </div>
 
+<div  class="row mb-3">
+    <div class="col">
+        <div class="image-wrapper">
+            <img id="preview" src="http://www.losprincipios.org/images/default.jpg" alt="">
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="form-group">
+            {!! Form::label('file', 'Imagen que se mostrara en el post')!!}
+            {!! Form::file('file', ['class' => 'form-control-file', 'accept' => 'image/*']) !!}
+            
+            @error('file')
+                <span class="text-danger text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+
+
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste, aperiam pariatur. A possimus, ad autem quas iste, sapiente ab, dolorem aut voluptatem facere rerum eligendi molestias quisquam repudiandae maiores similique.</p>
+    </div>
+</div>
+
 <div class="form-group">
     {!! Form::label('extract', 'Extracto:') !!}
     {!! Form::textarea('extract', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el extracto del post']) !!}

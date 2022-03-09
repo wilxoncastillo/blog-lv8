@@ -4,7 +4,7 @@
     ])
 
 <article class="mb-8 bg-white shadow-lg rounded-lg overflow-hidden">
-    <img src="{{ Storage::url($post->image->url) }}" class="w-full h-72 object-cover object-center" alt="">
+    <img src="{{ isset($post->image) ? Storage::url($post->image->url) : 'http://www.losprincipios.org/images/default.jpg' }}" class="w-full h-72 object-cover object-center" alt="">
 
     <div class="px-6 py-4">
         <h1 class="font-bold text-xl mb-2">
@@ -12,7 +12,7 @@
         </h1>
 
         <div class="text-gray-700 text-base">
-            {{ $post->extract}}
+            {!! $post->extract !!}
         </div>
 
         <div class="px-6 pt-4 pb-2">

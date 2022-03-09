@@ -53,3 +53,8 @@ https://ckeditor.com/ckeditor-5/
 
 --------------------------------
 php artisan make:request PostRequest
+
+
+pixabay.com/es/
+
+php artisan storage:link

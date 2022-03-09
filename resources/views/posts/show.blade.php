@@ -3,18 +3,18 @@
         <h1 class="text-4xl text-gray-600">{{ $post->name }}</h1>
 
         <div class="text-lg text-gray-600">
-            {{ $post->extract}}
+            {!! $post->extract !!}
         </div>
 
         <div class="grid grid-cols-3 gap-6">
             {{-- contenido princiapl --}}
             <div class="col-span-2">
                 <figure>
-                    <img class="w-full h-80 object-cover object-center" src="{{ Storage::url($post->image->url) }}" alt="">
+                    <img class="w-full h-80 object-cover object-center" src="{{ isset($post->image) ? Storage::url($post->image->url) : 'http://www.losprincipios.org/images/default.jpg' }}" alt="">
                 </figure>
 
                 <div class="text-base text-gray-500 mt-4 text-justify">
-                    {{ $post->body }}
+                    {!! $post->body !!}
                 </div>
 
             </div>
@@ -27,7 +27,7 @@
                     @foreach($similares as $similar)
                         <li class="mb-4">
                             <a class="flex" href="{{ route('posts.show', $similar) }}">
-                                <img class="w-36 h-20 object-cover object-center" src="{{ Storage::url($similar->image->url) }}" alt="">
+                                <img class="w-36 h-20 object-cover object-center" src="{{ isset($similar->image) ? Storage::url($similar->image->url) :  'http://www.losprincipios.org/images/default.jpg' }}" alt="">
                                 <span class="w-full ml-2 text-gray-600">{{ $similar->name }}</span>
                             </a>
                         </li>
