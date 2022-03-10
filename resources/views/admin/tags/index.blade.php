@@ -3,9 +3,11 @@
 @section('title', 'Blod')
 
 @section('content_header')
-    <a href="{{ route('admin.tags.create') }}" class="btn btn-secondary btn-sm float-right">
-        Crear tag
-    </a>
+    @can('admin.tags.create')
+        <a href="{{ route('admin.tags.create') }}" class="btn btn-secondary btn-sm float-right">
+            Crear tag
+        </a>
+    @endcan
     
     <h1>Listado de Tags</h1>
 
@@ -35,17 +37,21 @@
                         <td>{{ $tag->id }}</td>
                         <td>{{ $tag->name }}</td>
                         <td width="10px">
-                            <a href="{{ route('admin.tags.edit', $tag) }}" class="btn btn-primary btn-sm">Editar</a>
+                            @can('admin.tags.edit')
+                                <a href="{{ route('admin.tags.edit', $tag) }}" class="btn btn-primary btn-sm">Editar</a>
+                            @endcan
                         </td>
                         <td width="10px">
-                            <form action="{{ route('admin.tags.destroy', $tag) }}" method="post">
-                                @csrf
-                                @method('delete')
-                                <button type="submit" class="btn btn-danger btn-sm">
-                                    Eliminar
-                                </button>
+                            @can('admin.tags.destroy')
+                                <form action="{{ route('admin.tags.destroy', $tag) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        Eliminar
+                                    </button>
 
-                            </form>
+                                </form>
+                            @endcan
                         </td>
                     </tr>
                 @endforeach

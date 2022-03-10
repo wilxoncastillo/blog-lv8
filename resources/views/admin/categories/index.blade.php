@@ -15,9 +15,11 @@
 
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('admin.categories.create') }}" class="btn btn-secondary">
-                Crear categoria
-            </a>
+            @can('admin.categories.create')
+                <a href="{{ route('admin.categories.create') }}" class="btn btn-secondary">
+                    Crear categoria
+                </a>
+            @endcan
         </div>
 
         <div class="card-body">
@@ -36,15 +38,19 @@
                             <td>{{ $category->id }}</td>
                             <td>{{ $category->name }}</td>
                             <td width="10px">
-                                <a href="{{ route('admin.categories.edit', $category) }}" class="btn btn-primary btn-sm">Editar</a>
+                                @can('admin.categories.edit')
+                                    <a href="{{ route('admin.categories.edit', $category) }}" class="btn btn-primary btn-sm">Editar</a>
+                                @endcan
                             </td>
                             <td width="10px">
-                                <form action="{{ route('admin.categories.destroy', $category) }}" method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                @can('admin.categories.destory')
+                                    <form action="{{ route('admin.categories.destroy', $category) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
 
-                                </form>
+                                    </form>
+                                @endcan
                             </td>
                         </tr>
                     @endforeach
