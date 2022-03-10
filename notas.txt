@@ -71,3 +71,14 @@ Post::observe(PostObserve::class);
 
 ----------------------------------------------------------------
 php artisan make:policy PostPolicy
+
+-------------------------------------------
+https://spatie.be/docs/laravel-permission/v5/introduction
+
+composer require spatie/laravel-permission
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+
+model User
+use Spatie\Permission\Traits\HasRoles;
+
+use HasRoles;
