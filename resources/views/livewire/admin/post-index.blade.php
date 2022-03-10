@@ -11,6 +11,7 @@
                     <tr>
                         <td>Id</td>
                         <td>Name</td>
+                        <td>User</td>
                         <td>Status</td>
                         <td colspan="2"></td>
                     </tr>
@@ -21,6 +22,7 @@
                         <tr>
                             <td>{{ $post->id }}</td>
                             <td>{{ $post->name }}</td>
+                            <td>{{ $post->user->name }}</td>
                             <td>{{ $post->status }}</td>
                             <td width="10px">
                                 <a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-primary btn-sm">Editar</a>
@@ -45,7 +47,6 @@
 
         <div class="card-footer">
             {{ $posts->links() }}
-
         </div>
 
     @else

@@ -25,10 +25,10 @@ class Post extends Model
         'category_id',
     ];
 
-    public function getRouteKeyName()
+    /* public function getRouteKeyName()
     {
         return 'slug';
-    }
+    } */
 
     // relacion 1:n inversas
     public function user() {

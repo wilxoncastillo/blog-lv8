@@ -13,7 +13,6 @@ class PostIndex extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $search;
-    
 
     public function render()
     {

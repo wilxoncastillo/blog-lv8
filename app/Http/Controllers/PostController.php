@@ -18,6 +18,9 @@ class PostController extends Controller
     }
 
     public function show(Post $post) {
+        
+        $this->authorize('published', $post);
+
         $similares = Post::where('category_id', $post->category->id)
             ->where('status', 2)
             ->where('id', '!=', $post->id)

@@ -20,9 +20,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
-
-        return view('admin.posts.index', compact('posts'));
+        return view('admin.posts.index');
     }
 
     /**
@@ -92,6 +90,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $this->authorize('author', $post);
+
         $categories = Category::pluck('name', 'id');
 
         $tags = Tag::all();
@@ -108,6 +108,8 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
+        $this->authorize('author', $post);
+
         $post->update([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
@@ -153,6 +155,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $this->authorize('author', $post);
+        
         $post->delete();
 
         return redirect()->route('admin.posts.index')
