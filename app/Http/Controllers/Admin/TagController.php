@@ -81,7 +81,7 @@ class TagController extends Controller
         ]);
 
         return redirect()->route('admin.tags.edit', compact('tag'))
-            ->with('flag', 'Registro ')->with('info', 'Tag creado con exito');
+            ->with('info', 'Tag creado con exito');
     }
 
     /**
