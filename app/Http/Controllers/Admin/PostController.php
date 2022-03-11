@@ -9,6 +9,7 @@ use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -57,6 +58,9 @@ class PostController extends Controller
                 'url' => $url
             ]);
         }
+
+        //Cache::forget('key');
+        Cache::flush();
 
         return redirect()->route('admin.posts.edit', compact('post'))
             ->with('info', 'Post creado con exito');
@@ -110,6 +114,8 @@ class PostController extends Controller
 
         $tags = Tag::all();
 
+        Cache::flush();
+
         return redirect()->route('admin.posts.edit', compact('post', 'categories', 'tags'))
             ->with('info', 'Post actualizado con exito');
     }
@@ -119,6 +125,8 @@ class PostController extends Controller
         $this->authorize('author', $post);
         
         $post->delete();
+
+        Cache::flush();
 
         return redirect()->route('admin.posts.index')
             ->with('info', 'Post Borrado con exito');
