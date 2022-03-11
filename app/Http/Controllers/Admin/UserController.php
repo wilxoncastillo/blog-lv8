@@ -11,8 +11,8 @@ class UserController extends Controller
 {
     
     public function __construct() {
-        $this->middleware('can:users.index')->only('index');
-        $this->middleware('can:users.edit')->only('edit', 'update');
+        $this->middleware('can:admin.users.index')->only('index');
+        $this->middleware('can:admin.users.edit')->only('edit', 'update');
     }
 
     public function index()
@@ -52,5 +52,13 @@ class UserController extends Controller
 
         return redirect()->route('admin.users.edit', compact('user', 'roles'))
             ->with('info', 'Roles asginado con exito');
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+
+        return redirect()->route('admin.users.index')
+            ->with('info', 'Usuario borado con exito');
     }
 }

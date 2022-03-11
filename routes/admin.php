@@ -23,7 +23,7 @@ Route::resource('/tags', TagController::class)
 Route::resource('/posts', PostController::class)->names('admin.posts');
 
 Route::resource('/users', UserController::class)
-    ->only('index','edit','update')
+    ->only('index','edit','update', 'destroy')
     ->names('admin.users');
 
 

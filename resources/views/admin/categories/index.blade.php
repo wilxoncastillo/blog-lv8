@@ -43,7 +43,7 @@
                                 @endcan
                             </td>
                             <td width="10px">
-                                @can('admin.categories.destory')
+                                @can('admin.categories.destroy')
                                     <form action="{{ route('admin.categories.destroy', $category) }}" method="post">
                                         @csrf
                                         @method('delete')

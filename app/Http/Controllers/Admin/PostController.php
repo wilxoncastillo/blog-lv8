@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Storage;
 class PostController extends Controller
 {
     public function __construct() {
-        $this->middleware('can:posts.index')->only('index');
-        $this->middleware('can:posts.create')->only('create', 'store');
-        $this->middleware('can:posts.edit')->only('edit', 'update');
-        $this->middleware('can:posts.destroy')->only('destroy');
+        $this->middleware('can:admin.posts.index')->only('index');
+        $this->middleware('can:admin.posts.create')->only('create', 'store');
+        $this->middleware('can:admin.posts.edit')->only('edit', 'update');
+        $this->middleware('can:admin.posts.destroy')->only('destroy');
     }
     
     public function index()

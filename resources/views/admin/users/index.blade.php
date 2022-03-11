@@ -9,9 +9,6 @@
         </div>
     @endif
 
-    <a href="{{ route('admin.users.create') }}" class="btn btn-secondary btn-sm float-right">
-        Nuevo Post
-    </a>
     <h1>Listado de usuarios</h1>
 @stop
 
